@@ -1,1 +1,999 @@
-a
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#c2571f">
+<title>泉州 4 日 · 赏秋手册</title>
+<style>
+:root{
+  --bg:#faf6ef;
+  --bg2:#f3ece0;
+  --card:#fffdf8;
+  --ink:#2e2419;
+  --ink2:#6b5b48;
+  --ink3:#9c8b76;
+  --line:#e6dcc9;
+  --accent:#c2571f;
+  --accent2:#e08b2e;
+  --gold:#d9a441;
+  --green:#5d7a4a;
+  --d1:#c2571f;
+  --d2:#b8862b;
+  --d3:#7a8b4f;
+  --d4:#8a6a52;
+  --shadow:0 1px 2px rgba(90,70,40,.06),0 8px 24px -12px rgba(90,70,40,.18);
+  --radius:18px;
+}
+html[data-theme="dark"]{
+  --bg:#171410;
+  --bg2:#1f1b15;
+  --card:#221d17;
+  --ink:#f0e8dc;
+  --ink2:#bdab94;
+  --ink3:#8a7963;
+  --line:#3a3128;
+  --accent:#e8843c;
+  --accent2:#f0a94e;
+  --gold:#e0b355;
+  --green:#8aa46e;
+  --d1:#e8843c;
+  --d2:#ddb04e;
+  --d3:#9bb06d;
+  --d4:#b08e72;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;
+  font-size:15px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  transition:background .5s ease,color .5s ease;
+  overflow-x:hidden;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px 64px}
+
+/* ---------- 落叶背景 ---------- */
+#leaves{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.leaf{position:absolute;top:-40px;opacity:0;will-change:transform}
+@media (prefers-reduced-motion:reduce){.leaf{display:none}}
+main,.hero{position:relative;z-index:1}
+
+/* ---------- 顶部标题 ---------- */
+header.top{padding:30px 0 14px;text-align:center}
+.kicker{
+  display:inline-block;font-size:11px;letter-spacing:.22em;font-weight:700;
+  color:var(--accent);text-transform:uppercase;margin-bottom:8px;
+}
+h1{
+  font-size:29px;margin:0 0 6px;letter-spacing:-.01em;font-weight:800;
+  background:linear-gradient(100deg,var(--accent),var(--gold) 70%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.sub{font-size:12.5px;color:var(--ink3);letter-spacing:.04em}
+
+/* ---------- 通用卡片 ---------- */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:18px;margin:14px 0;
+  transition:background .5s ease,border-color .5s ease;
+}
+.sec-title{
+  display:flex;align-items:center;gap:9px;
+  font-size:16px;font-weight:800;margin:30px 0 2px;letter-spacing:-.01em;
+}
+.sec-title .bar{width:4px;height:17px;border-radius:3px;background:linear-gradient(var(--accent),var(--gold))}
+.sec-note{font-size:12px;color:var(--ink3);margin:0 0 10px;padding-left:13px}
+
+/* ---------- 此刻关注 ---------- */
+.now{
+  background:linear-gradient(140deg,var(--accent) 0%,#a8451a 55%,#7d3413 100%);
+  color:#fff;border:none;position:relative;overflow:hidden;
+  padding:20px 20px 18px;
+}
+html[data-theme="dark"] .now{background:linear-gradient(140deg,#b8541f 0%,#8d3d15 55%,#5e2610 100%)}
+.now::after{
+  content:"";position:absolute;right:-46px;top:-46px;width:150px;height:150px;
+  border-radius:50%;background:rgba(255,255,255,.09);
+}
+.now::before{
+  content:"";position:absolute;right:14px;bottom:-58px;width:106px;height:106px;
+  border-radius:50%;background:rgba(255,255,255,.06);
+}
+.now-label{font-size:11px;letter-spacing:.2em;font-weight:700;opacity:.82;text-transform:uppercase}
+.now-event{font-size:18px;font-weight:800;margin:7px 0 3px;position:relative;z-index:1;letter-spacing:-.01em}
+.now-meta{font-size:12.5px;opacity:.88;position:relative;z-index:1}
+.cd{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:16px;position:relative;z-index:1;
+}
+.cd .u{
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);
+  border-radius:12px;padding:8px 2px 6px;text-align:center;backdrop-filter:blur(4px);
+}
+.cd .n{font-size:25px;font-weight:800;line-height:1.05;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.cd .l{font-size:10px;opacity:.78;letter-spacing:.1em;margin-top:2px}
+.cd.done .n{font-size:17px}
+.now-foot{
+  margin-top:13px;font-size:11.5px;opacity:.8;position:relative;z-index:1;
+  border-top:1px solid rgba(255,255,255,.18);padding-top:10px;
+}
+.tz-chip{
+  display:inline-block;background:rgba(255,255,255,.18);border-radius:20px;
+  padding:1px 9px;font-size:10.5px;margin-left:5px;letter-spacing:.04em;
+}
+
+/* ---------- 地图 ---------- */
+.mapbox{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);padding:12px 12px 8px;transition:background .5s ease,border-color .5s ease}
+.mapbox svg{width:100%;height:auto;display:block;border-radius:12px}
+.map-legend{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;padding:11px 4px 5px;font-size:11.5px;color:var(--ink2)}
+.map-legend span{display:flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+
+/* ---------- 订单 ---------- */
+.book-row{display:flex;gap:12px;padding:13px 0;border-bottom:1px dashed var(--line)}
+.book-row:last-child{border-bottom:none;padding-bottom:2px}
+.book-ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;
+  background:var(--bg2);font-size:17px;flex:none}
+.book-body{flex:1;min-width:0}
+.book-t{font-weight:700;font-size:14px;margin-bottom:3px;letter-spacing:-.01em}
+.book-d{font-size:12.5px;color:var(--ink2);line-height:1.6}
+.book-d b{color:var(--ink);font-weight:600}
+.tag{
+  display:inline-block;font-size:10.5px;padding:1px 8px;border-radius:20px;
+  background:var(--bg2);color:var(--ink2);margin-left:6px;font-weight:600;
+  border:1px solid var(--line);vertical-align:1px;
+}
+.tag.warn{background:rgba(194,87,31,.12);color:var(--accent);border-color:rgba(194,87,31,.3)}
+.tag.ok{background:rgba(93,122,74,.14);color:var(--green);border-color:rgba(93,122,74,.3)}
+
+/* ---------- 逐日行程 ---------- */
+.day{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  box-shadow:var(--shadow);margin:14px 0;overflow:hidden;transition:background .5s ease,border-color .5s ease}
+.day-hd{display:flex;align-items:center;gap:11px;padding:15px 16px;cursor:pointer;user-select:none;
+  background:var(--bg2);border-bottom:1px solid transparent;transition:background .25s}
+.day.open .day-hd{border-bottom-color:var(--line)}
+.day-hd:active{opacity:.75}
+.day-no{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  color:#fff;font-weight:800;font-size:15px;flex:none;line-height:1}
+.day-no small{display:block;font-size:8.5px;font-weight:600;opacity:.85;letter-spacing:.06em;margin-top:1px}
+.day-hd-t{flex:1;min-width:0}
+.day-hd-t h3{margin:0;font-size:15px;font-weight:800;letter-spacing:-.01em}
+.day-hd-t p{margin:1px 0 0;font-size:11.5px;color:var(--ink3)}
+.chev{width:18px;height:18px;flex:none;color:var(--ink3);transition:transform .3s}
+.day.open .chev{transform:rotate(180deg)}
+.day-bd{display:none;padding:4px 16px 14px}
+.day.open .day-bd{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+
+/* 当日路线 */
+.route-bar{padding:11px 0 4px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.route-bar .path{font-size:11.5px;color:var(--ink2);flex:1;min-width:150px;line-height:1.5}
+.route-bar .path b{color:var(--accent);font-weight:700}
+.btn-nav{
+  display:inline-flex;align-items:center;gap:5px;background:var(--accent);color:#fff;
+  border:none;border-radius:20px;padding:7px 15px;font-size:12px;font-weight:700;
+  cursor:pointer;text-decoration:none;flex:none;font-family:inherit;
+  box-shadow:0 2px 8px -2px rgba(194,87,31,.5);
+}
+.btn-nav:active{transform:scale(.96)}
+.route-map{margin:8px 0 4px;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.route-map svg{width:100%;height:auto;display:block}
+
+/* 时间轴 */
+.tl{position:relative;padding-left:74px;margin-top:10px}
+.tl::before{content:"";position:absolute;left:60px;top:6px;bottom:8px;width:1.5px;
+  background:linear-gradient(var(--line),var(--line) 60%,transparent)}
+.ev{position:relative;padding:0 0 17px}
+.ev:last-child{padding-bottom:2px}
+.ev .tm{position:absolute;left:-74px;top:0;width:52px;text-align:left;
+  font-size:11.5px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.ev .tm small{display:block;font-size:9px;color:var(--ink3);font-weight:600;letter-spacing:0}
+.ev::before{
+  content:"";position:absolute;left:-17.5px;top:5px;width:9px;height:9px;border-radius:50%;
+  background:var(--card);border:2px solid var(--accent);z-index:1;
+}
+.ev.free::before{border-color:var(--ink3)}
+.ev.meal::before{border-color:var(--gold)}
+.ev .ev-t{font-weight:700;font-size:14px;margin-bottom:2px;letter-spacing:-.01em;line-height:1.45}
+.ev .ev-d{font-size:12.5px;color:var(--ink2);line-height:1.6}
+.ev .ev-d b{color:var(--ink);font-weight:600}
+.ev-meta{margin-top:5px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+
+/* 地点链接 */
+.poi{
+  color:inherit;text-decoration:none;border-bottom:1.5px dotted var(--accent);
+  cursor:pointer;font-weight:700;
+}
+.poi:active{color:var(--accent)}
+.nav-mini{
+  display:inline-flex;align-items:center;gap:3px;font-size:10.5px;font-weight:700;
+  color:var(--accent);background:rgba(194,87,31,.09);border:1px solid rgba(194,87,31,.25);
+  border-radius:20px;padding:2px 9px;text-decoration:none;cursor:pointer;
+}
+.nav-mini:active{transform:scale(.95)}
+
+/* 提示条 */
+.note{
+  border-radius:11px;padding:10px 12px;font-size:12px;line-height:1.6;margin:9px 0 4px;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.note .ni{flex:none;font-size:13px;line-height:1.4}
+.note.warn{background:rgba(194,87,31,.08);color:var(--accent);border:1px solid rgba(194,87,31,.2)}
+.note.warn b{color:var(--accent)}
+.note.info{background:rgba(217,164,65,.1);color:#8a6520;border:1px solid rgba(217,164,65,.28)}
+html[data-theme="dark"] .note.info{color:var(--gold)}
+.note.rain{background:rgba(90,120,160,.1);color:#4e6d94;border:1px solid rgba(90,120,160,.25)}
+html[data-theme="dark"] .note.rain{color:#8fb0d4}
+
+/* ---------- 待办 ---------- */
+.todo{list-style:none;margin:0;padding:0}
+.todo li{
+  display:flex;gap:11px;align-items:flex-start;padding:11px 0;
+  border-bottom:1px dashed var(--line);font-size:13.5px;line-height:1.6;
+}
+.todo li:last-child{border-bottom:none;padding-bottom:2px}
+.todo .no{
+  flex:none;width:21px;height:21px;border-radius:50%;background:var(--bg2);
+  border:1px solid var(--line);display:grid;place-items:center;
+  font-size:10.5px;font-weight:800;color:var(--ink2);margin-top:2px;
+}
+.todo li.hi .no{background:rgba(194,87,31,.12);border-color:rgba(194,87,31,.35);color:var(--accent)}
+.todo b{font-weight:700}
+.todo .hint{display:block;font-size:11.5px;color:var(--ink3);margin-top:2px}
+.foot-note{font-size:11.5px;color:var(--ink3);text-align:center;padding:14px 8px 0;line-height:1.7}
+
+/* ---------- 昼夜切换按钮 ---------- */
+.theme-btn{
+  position:fixed;right:14px;bottom:18px;z-index:60;
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+  background:var(--card);color:var(--ink);font-size:19px;cursor:pointer;
+  box-shadow:var(--shadow);display:grid;place-items:center;
+  transition:transform .2s,background .5s;
+}
+.theme-btn:active{transform:scale(.9)}
+@media(max-width:400px){
+  .tl{padding-left:66px}
+  .tl::before{left:53px}
+  .ev .tm{left:-66px;width:45px;font-size:11px}
+  .ev::before{left:-16.5px}
+  h1{font-size:25px}
+  .cd .n{font-size:22px}
+}
+</style>
+</head>
+<body>
+<div id="leaves" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <header class="top">
+    <div class="kicker">Fujian · Quanzhou</div>
+    <h1>泉州赏秋四日</h1>
+    <div class="sub">2026.10.20 – 10.23 · 2 人 · 半城烟火半城仙</div>
+  </header>
+
+  <main>
+
+  <!-- ===== 此刻关注 ===== -->
+  <section class="card now" id="nowCard">
+    <div class="now-label">此刻关注 · NEXT UP</div>
+    <div class="now-event" id="nowEvent">加载中…</div>
+    <div class="now-meta" id="nowMeta">—</div>
+    <div class="cd" id="cd">
+      <div class="u"><div class="n" id="cdD">--</div><div class="l">天</div></div>
+      <div class="u"><div class="n" id="cdH">--</div><div class="l">时</div></div>
+      <div class="u"><div class="n" id="cdM">--</div><div class="l">分</div></div>
+      <div class="u"><div class="n" id="cdS">--</div><div class="l">秒</div></div>
+    </div>
+    <div class="now-foot" id="nowFoot">
+      所有时刻按北京时间 UTC+8 计算，跨时区打开也不会算错<span class="tz-chip">UTC+8</span>
+    </div>
+  </section>
+
+  <!-- ===== 行程地图 ===== -->
+  <div class="sec-title"><span class="bar"></span>行程总览 · 手绘路线图</div>
+  <div class="sec-note">四天颜色各一，星标为每晚住宿（丰泽广场亚朵酒店）</div>
+  <div class="mapbox">
+    <svg viewBox="0 0 700 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="泉州四日行程手绘路线图">
+      <defs>
+        <filter id="rough" x="-8%" y="-8%" width="116%" height="116%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="3" seed="7" result="n"/>
+          <feDisplacementMap in="SourceGraphic" in2="n" scale="4.2" xChannelSelector="R" yChannelSelector="G"/>
+        </filter>
+        <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+      </defs>
+
+      <rect x="0" y="0" width="700" height="470" rx="14" fill="var(--bg2)"/>
+      <!-- 装饰：海 -->
+      <path d="M0 402 Q 90 386 175 396 T 350 392 T 530 400 T 700 388 L700 470 L0 470Z"
+            fill="var(--accent)" opacity=".07"/>
+      <text x="640" y="452" font-size="11" fill="var(--ink3)" text-anchor="end"
+            font-family="serif" opacity=".7">晋 江</text>
+      <text x="60" y="452" font-size="11" fill="var(--ink3)"
+            font-family="serif" opacity=".7">泉 州 湾</text>
+
+      <!-- 城区底纹 -->
+      <ellipse cx="300" cy="230" rx="215" ry="150" fill="var(--gold)" opacity=".055" filter="url(#soft)"/>
+      <text x="352" y="196" font-size="13" fill="var(--ink3)" font-family="serif"
+            opacity=".5" letter-spacing="4">鲤城古城</text>
+      <text x="512" y="120" font-size="12" fill="var(--ink3)" font-family="serif"
+            opacity=".5" letter-spacing="3">丰泽</text>
+
+      <g filter="url(#rough)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+
+        <!-- D1 机场→酒店→古城 -->
+        <path d="M596 300 Q 540 268 480 246 T 400 232" stroke="var(--d1)" stroke-width="3.4" opacity=".85"/>
+        <path d="M400 232 Q 330 214 268 222 T 190 246" stroke="var(--d1)" stroke-width="3.4" opacity=".85"/>
+        <path d="M190 246 Q 150 252 128 268" stroke="var(--d1)" stroke-width="3.4" opacity=".85"/>
+
+        <!-- D2 酒店→承天寺→关岳庙→闽台缘 -->
+        <path d="M400 232 Q 372 262 344 268" stroke="var(--d2)" stroke-width="3.4" opacity=".85"/>
+        <path d="M344 268 Q 312 286 290 300" stroke="var(--d2)" stroke-width="3.4" opacity=".85"/>
+        <path d="M290 300 Q 320 268 372 216 T 448 162" stroke="var(--d2)" stroke-width="3.4"
+              stroke-dasharray="9 7" opacity=".7"/>
+
+        <!-- D3 酒店→非遗馆→回酒店→古城手信 -->
+        <path d="M400 232 Q 430 244 462 240" stroke="var(--d3)" stroke-width="3.4" opacity=".85"/>
+        <path d="M462 240 Q 442 266 412 276 T 398 284" stroke="var(--d3)" stroke-width="3.4" opacity=".55"/>
+        <path d="M398 284 Q 342 302 262 292 T 175 272" stroke="var(--d3)" stroke-width="3.4" opacity=".85"/>
+
+        <!-- D4 酒店→机场 -->
+        <path d="M400 232 Q 480 250 540 272 T 596 300" stroke="var(--d4)" stroke-width="3.4"
+              stroke-dasharray="11 8" opacity=".8"/>
+      </g>
+
+      <!-- 住宿星标 -->
+      <g>
+        <circle cx="400" cy="232" r="17" fill="var(--accent)" opacity=".16"/>
+        <circle cx="400" cy="232" r="10.5" fill="var(--accent)" stroke="var(--card)" stroke-width="2.4"/>
+        <text x="400" y="236.5" font-size="11" text-anchor="middle" fill="#fff" font-weight="700">★</text>
+        <text x="400" y="266" font-size="11.5" text-anchor="middle" fill="var(--ink)"
+              font-weight="700">亚朵酒店</text>
+        <text x="400" y="280" font-size="9.5" text-anchor="middle" fill="var(--ink3)">3 晚 · 丰泽区</text>
+      </g>
+
+      <g filter="url(#rough)">
+        <!-- D1 节点 -->
+        <circle cx="596" cy="300" r="6.5" fill="var(--d1)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="588" y="322" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">晋江机场</text>
+        <circle cx="268" cy="222" r="6.5" fill="var(--d1)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="268" y="206" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">开元寺</text>
+        <circle cx="190" cy="246" r="6.5" fill="var(--d1)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="184" y="232" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">西街</text>
+        <circle cx="128" cy="268" r="6.5" fill="var(--d1)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="112" y="290" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">木偶戏</text>
+
+        <!-- D2 节点 -->
+        <circle cx="344" cy="268" r="6.5" fill="var(--d2)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="338" y="288" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">承天寺</text>
+        <circle cx="290" cy="300" r="6.5" fill="var(--d2)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="300" y="318" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">关岳庙</text>
+        <circle cx="448" cy="162" r="6.5" fill="var(--d2)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="470" y="152" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">闽台缘</text>
+
+        <!-- D3 节点 -->
+        <circle cx="462" cy="240" r="6.5" fill="var(--d3)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="500" y="234" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">非遗馆</text>
+        <circle cx="175" cy="272" r="6.5" fill="var(--d3)" stroke="var(--card)" stroke-width="2.2"/>
+        <text x="158" y="256" font-size="10.5" fill="var(--ink2)" text-anchor="middle" font-weight="600">天台日落</text>
+      </g>
+    </svg>
+    <div class="map-legend">
+      <span><i class="dot" style="background:var(--d1)"></i>D1 落地进城</span>
+      <span><i class="dot" style="background:var(--d2)"></i>D2 古寺与博物馆</span>
+      <span><i class="dot" style="background:var(--d3)"></i>D3 非遗与手信</span>
+      <span><i class="dot" style="background:var(--d4)"></i>D4 返程</span>
+      <span><i class="dot" style="background:var(--accent)"></i>★ 住宿</span>
+    </div>
+  </div>
+
+  <!-- ===== 已确认订单 ===== -->
+  <div class="sec-title"><span class="bar"></span>已确认 · 机票 / 酒店</div>
+  <div class="sec-note">页面为公开链接，确认号、证件号、房间号一律不写入</div>
+  <div class="card">
+
+    <div class="book-row">
+      <div class="book-ico">✈️</div>
+      <div class="book-body">
+        <div class="book-t">去程 · 广州白云 T2 → 泉州晋江<span class="tag warn">待出票</span></div>
+        <div class="book-d">
+          <b>10/20 周二</b> · 11:00 起飞 → <b>12:30 落地</b>（约 1h30m）<br>
+          出发：广州白云国际机场 T2　到达：泉州晋江国际机场<br>
+          航班号待补 · 落地后打车至酒店约 25 分钟
+        </div>
+      </div>
+    </div>
+
+    <div class="book-row">
+      <div class="book-ico">✈️</div>
+      <div class="book-body">
+        <div class="book-t">返程 · 泉州晋江 → 广州白云 T2<span class="tag warn">待出票</span></div>
+        <div class="book-d">
+          <b>10/23 周五</b> · <b>10:15 起飞</b> → 11:55 落地（约 1h40m）<br>
+          航班号待补 · 06:55 前务必出发，详见 D4 行程
+        </div>
+      </div>
+    </div>
+
+    <div class="book-row">
+      <div class="book-ico">🏨</div>
+      <div class="book-body">
+        <div class="book-t">泉州古城丰泽广场亚朵酒店（V3.6）<span class="tag ok">已订</span></div>
+        <div class="book-d">
+          地址：<a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E5%B8%82%E4%B8%B0%E6%B3%BD%E5%8C%BA%E7%A5%A5%E8%BF%9C%E8%B7%AF47%E5%8F%B7" target="_blank" rel="noopener">泉州市丰泽区祥远路 47 号</a><br>
+          入住 <b>10/20</b> → 离店 <b>10/23</b>，共 <b>3 晚</b><br>
+          房型：行政城景大床房 · 31㎡ · 1.8m 床 · <b>不含早餐</b><br>
+          电话：前台号码见预订 App（页面不公开）<br>
+          <span style="color:var(--ink3)">距钟楼/西街 4.5km（15 分钟车程）· 距晋江机场 13km（25 分钟车程）</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== 逐日行程 ===== -->
+  <div class="sec-title"><span class="bar"></span>逐日行程</div>
+  <div class="sec-note">点标题展开当天详情 · 点地点名唤起地图导航 · 展开后可用「一键全天导航」</div>
+
+  <!-- ============ D1 ============ -->
+  <section class="day open" data-day="1"
+    data-route="泉州晋江国际机场|泉州古城丰泽广场亚朵酒店|泉州开元寺|泉州西街|泉州非遗剧院">
+    <div class="day-hd">
+      <div class="day-no" style="background:var(--d1)">D1<small>TUE</small></div>
+      <div class="day-hd-t">
+        <h3>落地 · 开元寺 · 西街 · 木偶戏</h3>
+        <p>10/20 周二 · 半天 · 鲤城古城</p>
+      </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="day-bd">
+      <div class="route-bar">
+        <div class="path">路线：<b>晋江机场</b> → 酒店 → 开元寺 → 西街 → 木偶戏</div>
+        <a class="btn-nav" href="https://www.google.com/maps/dir/?api=1&origin=%E6%99%8B%E6%B1%9F%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&destination=%E6%B3%89%E5%B7%9E%E9%9D%9E%E9%81%97%E5%89%A7%E9%99%A2&waypoints=%E6%B3%89%E5%B7%9E%E5%8F%A4%E5%9F%8E%E4%B8%B0%E6%B3%BD%E5%B9%BF%E5%9C%BA%E4%BA%9A%E6%9C%B5%E9%85%92%E5%BA%97%7C%E6%B3%89%E5%B7%9E%E5%BC%80%E5%85%83%E5%AF%BA%7C%E6%B3%89%E5%B7%9E%E8%A5%BF%E8%A1%97&travelmode=driving" target="_blank" rel="noopener">🧭 一键全天导航</a>
+      </div>
+      <div class="route-map">
+        <svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="150" rx="12" fill="var(--bg2)"/>
+          <path d="M58 108 Q 165 48 268 62 T 455 44 T 585 40" fill="none"
+                stroke="var(--d1)" stroke-width="3" stroke-dasharray="10 7" stroke-linecap="round" opacity=".85"/>
+          <g font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">
+            <circle cx="58" cy="108" r="7.5" fill="var(--d1)"/>
+            <text x="58" y="140" fill="var(--ink2)">机场 12:30</text>
+            <circle cx="228" cy="66" r="6.5" fill="var(--d1)" opacity=".9"/>
+            <text x="228" y="46" fill="var(--ink2)">酒店</text>
+            <circle cx="390" cy="50" r="6.5" fill="var(--d1)" opacity=".9"/>
+            <text x="390" y="30" fill="var(--ink2)">开元寺 14:30</text>
+            <circle cx="490" cy="43" r="6.5" fill="var(--d1)" opacity=".9"/>
+            <text x="497" y="66" fill="var(--ink2)">西街 17:00</text>
+            <circle cx="585" cy="40" r="7.5" fill="var(--d1)"/>
+            <text x="585" y="26" fill="var(--ink2)">木偶戏 19:00</text>
+          </g>
+        </svg>
+      </div>
+      <div class="tl">
+        <div class="ev"><div class="tm">11:00<small>UTC+8</small></div>
+          <div class="ev-t">广州白云 T2 起飞</div>
+          <div class="ev-d">提前 1.5 小时到 T2 值机。航程约 1 小时 30 分。</div></div>
+
+        <div class="ev"><div class="tm">12:30<small>UTC+8</small></div>
+          <div class="ev-t">落地泉州晋江机场</div>
+          <div class="ev-d">机场不大，取行李出站很快。出站直接打车。</div>
+          <div class="ev-meta"><a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener">📍 机场导航</a></div></div>
+
+        <div class="ev"><div class="tm">13:00<small>UTC+8</small></div>
+          <div class="ev-t">打车至酒店 · 放行李</div>
+          <div class="ev-d"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E5%B8%82%E4%B8%B0%E6%B3%BD%E5%8C%BA%E7%A5%A5%E8%BF%9C%E8%B7%AF47%E5%8F%B7" target="_blank" rel="noopener">丰泽区祥远路 47 号</a>，13km，约 25 分钟车程。先办入住、放下行李轻装出门。</div></div>
+
+        <div class="ev meal"><div class="tm">14:00<small>UTC+8</small></div>
+          <div class="ev-t">打车去古城 · 路上解决午饭</div>
+          <div class="ev-d">酒店到西街约 4.5km、15 分钟。可以在西街口吃<b>面线糊</b>（推荐水门国仔，配醋肉+卤蛋）当第一顿。</div></div>
+
+        <div class="ev"><div class="tm">14:40<small>UTC+8</small></div>
+          <div class="ev-t"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E5%BC%80%E5%85%83%E5%AF%BA" target="_blank" rel="noopener">开元寺</a> · 2 小时</div>
+          <div class="ev-d">西街 176 号 · 免费入园。<b>重点看东西双塔、大雄宝殿飞天乐伎、千年古桑、甘露戒坛</b>。红墙在傍晚侧光下最好看。</div>
+          <div class="ev-meta">
+            <span class="tag warn">17:00 停止入园</span>
+            <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E5%BC%80%E5%85%83%E5%AF%BA" target="_blank" rel="noopener">📍 导航</a>
+          </div>
+          <div class="note warn"><span class="ni">⚠️</span><div><b>务必 17:00 前进园。</b>若航班延误，落地后先直奔开元寺，行李寄存酒店的事往后放——寺比酒店重要。</div></div>
+        </div>
+
+        <div class="ev meal"><div class="tm">17:00<small>UTC+8</small></div>
+          <div class="ev-t"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E8%A5%BF%E8%A1%97" target="_blank" rel="noopener">西街</a> · 逛吃 + 晚饭</div>
+          <div class="ev-d">千年古街，老厝与新店并存。必吃：<b>侯阿婆肉粽、吴氏麻糍、亚佛润饼、康庄满煎糕</b>。钻进侧边小巷比主街便宜三成。</div>
+          <div class="ev-meta"><a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E8%A5%BF%E8%A1%97" target="_blank" rel="noopener">📍 导航</a></div></div>
+
+        <div class="ev"><div class="tm">19:00<small>UTC+8</small></div>
+          <div class="ev-t"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E9%9D%9E%E9%81%97%E5%89%A7%E9%99%A2" target="_blank" rel="noopener">提线木偶戏</a> · 约 1 小时</div>
+          <div class="ev-d">西街 20 号（近钟楼）等场馆，19:00 场。世界级非遗，来泉州最不该错过的演出。</div>
+          <div class="ev-meta">
+            <span class="tag warn">需提前订票</span>
+            <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E9%9D%9E%E9%81%97%E5%89%A7%E9%99%A2" target="_blank" rel="noopener">📍 导航</a>
+          </div>
+        </div>
+
+        <div class="ev free"><div class="tm">20:30<small>UTC+8</small></div>
+          <div class="ev-t">打车回酒店 · 休息</div>
+          <div class="ev-d">古城到酒店 15 分钟车程。第一天节奏不紧，早点休息。</div></div>
+      </div>
+
+      <div class="note rain"><span class="ni">🌧️</span><div><b>雨天备选：</b>把开元寺压缩到 1 小时，其余时间沿西街<b>骑楼</b>廊下走（基本不淋雨）；木偶戏是室内演出，不受影响。全程打车，不用骑车。</div></div>
+    </div>
+  </section>
+
+  <!-- ============ D2 ============ -->
+  <section class="day" data-day="2"
+    data-route="泉州古城丰泽广场亚朵酒店|泉州承天寺|泉州关岳庙|中国闽台缘博物馆">
+    <div class="day-hd">
+      <div class="day-no" style="background:var(--d2)">D2<small>WED</small></div>
+      <div class="day-hd-t">
+        <h3>承天寺 · 关岳庙 · 闽台缘博物馆</h3>
+        <p>10/21 周三 · 全天 · 古城 → 丰泽</p>
+      </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="day-bd">
+      <div class="route-bar">
+        <div class="path">路线：酒店 → <b>承天寺</b> → 关岳庙 →（打车 8km）→ <b>闽台缘博物馆</b></div>
+        <a class="btn-nav" href="https://www.google.com/maps/dir/?api=1&origin=%E6%B3%89%E5%B7%9E%E5%8F%A4%E5%9F%8E%E4%B8%B0%E6%B3%BD%E5%B9%BF%E5%9C%BA%E4%BA%9A%E6%9C%B5%E9%85%92%E5%BA%97&destination=%E4%B8%AD%E5%9B%BD%E9%97%BD%E5%8F%B0%E7%BC%98%E5%8D%9A%E7%89%A9%E9%A6%86&waypoints=%E6%B3%89%E5%B7%9E%E6%89%BF%E5%A4%A9%E5%AF%BA%7C%E6%B3%89%E5%B7%9E%E5%85%B3%E5%B2%B3%E5%BA%99&travelmode=driving" target="_blank" rel="noopener">🧭 一键全天导航</a>
+      </div>
+      <div class="route-map">
+        <svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="150" rx="12" fill="var(--bg2)"/>
+          <path d="M70 40 Q 180 62 275 70 T 420 74 T 575 62" fill="none"
+                stroke="var(--d2)" stroke-width="3" stroke-dasharray="10 7" stroke-linecap="round" opacity=".85"/>
+          <g font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">
+            <circle cx="70" cy="40" r="7" fill="var(--d2)"/>
+            <text x="70" y="26" fill="var(--ink2)">酒店 8:40</text>
+            <circle cx="248" cy="68" r="6.5" fill="var(--d2)" opacity=".9"/>
+            <text x="248" y="48" fill="var(--ink2)">承天寺 9:20</text>
+            <circle cx="400" cy="73" r="6.5" fill="var(--d2)" opacity=".9"/>
+            <text x="400" y="94" fill="var(--ink2)">关岳庙 11:00</text>
+            <circle cx="575" cy="62" r="7" fill="var(--d2)"/>
+            <text x="575" y="48" fill="var(--ink2)">闽台缘 14:00</text>
+          </g>
+        </svg>
+      </div>
+      <div class="tl">
+        <div class="ev"><div class="tm">08:40<small>UTC+8</small></div>
+          <div class="ev-t">酒店门口打车去古城</div>
+          <div class="ev-d">今天要跑两个片区，早点出发。酒店附近先吃早饭，或到钟楼一带吃<b>面线糊</b>。</div>
+          <div class="note info"><span class="ni">🥣</span><div>酒店<b>不含早餐</b>。推荐钟楼附近 <b>老记面线糊</b>（配醋肉约 16 元）、<b>康庄满煎糕</b>（3 元一块，去晚了卖完）。</div></div>
+        </div>
+
+        <div class="ev"><div class="tm">09:20<small>UTC+8</small></div>
+          <div class="ev-t"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E6%89%BF%E5%A4%A9%E5%AF%BA" target="_blank" rel="noopener">承天寺</a> · 1 小时</div>
+          <div class="ev-d">南俊路 36 号 · 免费。泉州三大丛林之一，<b>人少清幽</b>，有古树、池水、石塔。比开元寺安静得多，适合早上慢慢走。</div>
+          <div class="ev-meta">
+            <span class="tag ok">免预约</span>
+            <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E6%89%BF%E5%A4%A9%E5%AF%BA" target="_blank" rel="noopener">📍 导航</a>
+          </div>
+        </div>
+
+        <div class="ev"><div class="tm">10:40<small>UTC+8</small></div>
+          <div class="ev-t"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E5%85%B3%E5%B2%B3%E5%BA%99" target="_blank" rel="noopener">关岳庙</a> · 40 分钟</div>
+          <div class="ev-d">涂门街。泉州香火最旺的庙，<b>闽南建筑雕饰极繁复</b>，屋脊剪瓷、木雕都值得细看。白天和夜晚是两种气质。</div>
+          <div class="ev-meta">
+            <span class="tag ok">免预约</span>
+            <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E5%85%B3%E5%B2%B3%E5%BA%99" target="_blank" rel="noopener">📍 导航</a>
+          </div>
+        </div>
+
+        <div class="ev meal"><div class="tm">11:40<small>UTC+8</small></div>
+          <div class="ev-t">涂门街吃午饭</div>
+          <div class="ev-d">涂门街是泉州美食主战场：<b>斯丹姜母鸭</b>（半只约 68 元，两人刚好）、<b>好成财牛排馆</b>（中式牛排配咸饭，人均 25）。</div></div>
+
+        <div class="ev"><div class="tm">13:00<small>UTC+8</small></div>
+          <div class="ev-t">打车 · 古城 → 闽台缘博物馆</div>
+          <div class="ev-d">涂门街到北清东路 212 号约 8km、20 分钟车程。<b>这段必须打车</b>，公交要换乘。</div></div>
+
+        <div class="ev"><div class="tm">13:40<small>UTC+8</small></div>
+          <div class="ev-t"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E5%9B%BD%E9%97%BD%E5%8F%B0%E7%BC%98%E5%8D%9A%E7%89%A9%E9%A6%86" target="_blank" rel="noopener">中国闽台缘博物馆</a> · 2 小时</div>
+          <div class="ev-d">北清东路 212 号 · <b>免费</b>。讲闽台两岸渊源，馆体建筑本身也好看。16:30 停止入馆、17:00 闭馆。</div>
+          <div class="ev-meta">
+            <span class="tag ok">免预约 · 带身份证</span>
+            <span class="tag warn">16:30 停止入馆</span>
+            <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E5%9B%BD%E9%97%BD%E5%8F%B0%E7%BC%98%E5%8D%9A%E7%89%A9%E9%A6%86" target="_blank" rel="noopener">📍 导航</a>
+          </div>
+          <div class="note warn"><span class="ni">⚠️</span><div><b>今天的唯一风险点在这里。</b>上午在古城如果磨太久，下午赶到闽台缘可能已过 16:30。<b>请把「13:00 从涂门街打车出发」当成硬死线。</b></div></div>
+        </div>
+
+        <div class="ev free"><div class="tm">16:00<small>UTC+8</small></div>
+          <div class="ev-t">出馆 · 打车回酒店 或 夜逛钟楼</div>
+          <div class="ev-d">闽台缘离酒店不到 3km，很近。想再逛逛可以打车去钟楼/西街看夜景，再回酒店。</div></div>
+      </div>
+
+      <div class="note rain"><span class="ni">🌧️</span><div><b>雨天备选：</b>雨天正好适合走博物馆——把闽台缘时间拉长到 3 小时，古城段压缩成「承天寺 + 关岳庙」快走。全程打车。</div></div>
+    </div>
+  </section>
+
+  <!-- ============ D3 ============ -->
+  <section class="day" data-day="3"
+    data-route="泉州古城丰泽广场亚朵酒店|泉州非物质文化遗产馆|泉州西街|泉州钟楼">
+    <div class="day-hd">
+      <div class="day-no" style="background:var(--d3)">D3<small>THU</small></div>
+      <div class="day-hd-t">
+        <h3>非遗馆 · 午休 · 手信 · 天台日落</h3>
+        <p>10/22 周四 · 全天 · 丰泽 → 古城</p>
+      </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="day-bd">
+      <div class="route-bar">
+        <div class="path">路线：酒店 → <b>非遗馆</b> → 回酒店午休 → <b>西街买手信</b> → 天台日落</div>
+        <a class="btn-nav" href="https://www.google.com/maps/dir/?api=1&origin=%E6%B3%89%E5%B7%9E%E5%8F%A4%E5%9F%8E%E4%B8%B0%E6%B3%BD%E5%B9%BF%E5%9C%BA%E4%BA%9A%E6%9C%B5%E9%85%92%E5%BA%97&destination=%E6%B3%89%E5%B7%9E%E9%92%9F%E6%A5%BC&waypoints=%E6%B3%89%E5%B7%9E%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7%E9%A6%86%7C%E6%B3%89%E5%B7%9E%E8%A5%BF%E8%A1%97&travelmode=driving" target="_blank" rel="noopener">🧭 一键全天导航</a>
+      </div>
+      <div class="route-map">
+        <svg viewBox="0 0 640 150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="150" rx="12" fill="var(--bg2)"/>
+          <path d="M92 46 Q 200 70 300 64 T 460 74 T 570 60" fill="none"
+                stroke="var(--d3)" stroke-width="3" stroke-dasharray="10 7" stroke-linecap="round" opacity=".85"/>
+          <g font-family="-apple-system,sans-serif" font-size="11.5" font-weight="700" text-anchor="middle">
+            <circle cx="92" cy="46" r="7" fill="var(--d3)"/>
+            <text x="92" y="32" fill="var(--ink2)">酒店 9:30</text>
+            <circle cx="255" cy="68" r="6.5" fill="var(--d3)" opacity=".9"/>
+            <text x="255" y="48" fill="var(--ink2)">非遗馆 10:00</text>
+            <circle cx="455" cy="74" r="6.5" fill="var(--d3)" opacity=".9"/>
+            <text x="455" y="95" fill="var(--ink2)">西街 15:30</text>
+            <circle cx="570" cy="60" r="7" fill="var(--d3)"/>
+            <text x="570" y="46" fill="var(--ink2)">钟楼日落</text>
+          </g>
+        </svg>
+      </div>
+      <div class="tl">
+        <div class="ev"><div class="tm">09:30<small>UTC+8</small></div>
+          <div class="ev-t">打车去非遗馆</div>
+          <div class="ev-d">酒店到东湖街 648 号约 5km、15 分钟。</div></div>
+
+        <div class="ev"><div class="tm">10:00<small>UTC+8</small></div>
+          <div class="ev-t"><a class="poi" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7%E9%A6%86" target="_blank" rel="noopener">泉州非物质文化遗产馆</a> · 2.5 小时</div>
+          <div class="ev-d">东湖街 648 号（侨乡体育中心内）· <b>免费</b>。木偶头、彩扎、刻纸、花灯、金苍绣…… 昨天看的木偶戏在这里能看到"怎么做出来的"。</div>
+          <div class="ev-meta">
+            <span class="tag warn">需公众号预约</span>
+            <span class="tag warn">16:30 停止入馆</span>
+            <a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E9%9D%9E%E7%89%A9%E8%B4%A8%E6%96%87%E5%8C%96%E9%81%97%E4%BA%A7%E9%A6%86" target="_blank" rel="noopener">📍 导航</a>
+          </div>
+          <div class="note info"><span class="ni">📱</span><div>预约入口：微信搜「<b>泉州市艺术馆泉州市非遗保护中心</b>」公众号，提前 1–3 天预约。开放时间周二至周日 9:00–17:00，<b>周一闭馆</b>（今天周三，没问题）。</div></div>
+        </div>
+
+        <div class="ev free"><div class="tm">12:40<small>UTC+8</small></div>
+          <div class="ev-t">附近午饭 → 打车回酒店午休</div>
+          <div class="ev-d">非遗馆离酒店很近，回酒店睡个午觉。这是你特意留出来的休息时间，不安排任何项目。</div></div>
+
+        <div class="ev"><div class="tm">15:30<small>UTC+8</small></div>
+          <div class="ev-t">打车去西街 · 买手信</div>
+          <div class="ev-d">中山路 / 西街一带集中采购：<b>源和堂蜜饯、林记正泉茂绿豆饼、永春老醋、德化白瓷小摆件</b>。1.5 小时足够。</div>
+          <div class="ev-meta"><a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E4%B8%AD%E5%B1%B1%E8%B7%AF%E7%89%B9%E4%BA%A7%E5%BA%97" target="_blank" rel="noopener">📍 导航</a></div></div>
+
+        <div class="ev meal"><div class="tm">17:00<small>UTC+8</small></div>
+          <div class="ev-t">西街慢逛 · 找天台等日落</div>
+          <div class="ev-d">西街游客中心<b>天台免费</b>，能俯瞰西街与东西双塔全景；沿街咖啡馆天台消费即可上。10 月下旬泉州日落约 <b>17:30 前后</b>，提前 20 分钟上去占位。</div>
+          <div class="ev-meta"><a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E8%A5%BF%E8%A1%97%E6%B8%B8%E5%AE%A2%E4%B8%AD%E5%BF%83" target="_blank" rel="noopener">📍 天台导航</a></div></div>
+
+        <div class="ev free"><div class="tm">18:20<small>UTC+8</small></div>
+          <div class="ev-t">晚饭 · 打车回酒店</div>
+          <div class="ev-d">在古城吃最后一顿正经闽南菜，再回丰泽区收拾行李。<b>今晚务必收好行李</b>——明早 06:55 就要走。</div></div>
+      </div>
+
+      <div class="note rain"><span class="ni">🌧️</span><div><b>雨天备选：</b>非遗馆本来就是室内，不受影响；下午买手信可改到 <b>中山路骑楼</b>（全程有廊，不淋雨）。天台日落改为咖啡馆室内靠窗。全程打车。</div></div>
+      <div class="note warn"><span class="ni">🧳</span><div><b>今晚必做：</b>把 20 号以来买的东西收进箱子，明早不要临时找。<b>06:55 出发是硬死线。</b></div></div>
+    </div>
+  </section>
+
+  <!-- ============ D4 ============ -->
+  <section class="day" data-day="4"
+    data-route="泉州古城丰泽广场亚朵酒店|泉州晋江国际机场">
+    <div class="day-hd">
+      <div class="day-no" style="background:var(--d4)">D4<small>FRI</small></div>
+      <div class="day-hd-t">
+        <h3>退房 · 打车去机场 · 返程</h3>
+        <p>10/23 周五 · 上午 · 不安排游玩</p>
+      </div>
+      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="day-bd">
+      <div class="route-bar">
+        <div class="path">路线：酒店 → <b>晋江机场</b>（13km，25 分钟）</div>
+        <a class="btn-nav" href="https://www.google.com/maps/dir/?api=1&origin=%E6%B3%89%E5%B7%9E%E5%8F%A4%E5%9F%8E%E4%B8%B0%E6%B3%BD%E5%B9%BF%E5%9C%BA%E4%BA%9A%E6%9C%B5%E9%85%92%E5%BA%97&destination=%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA&travelmode=driving" target="_blank" rel="noopener">🧭 一键导航</a>
+      </div>
+      <div class="tl">
+        <div class="ev"><div class="tm">06:30<small>UTC+8</small></div>
+          <div class="ev-t">起床 · 退房</div>
+          <div class="ev-d">行李前一晚已收好。退房手续很快，或办快速退房。</div></div>
+
+        <div class="ev"><div class="tm">06:55<small>UTC+8</small></div>
+          <div class="ev-t">打车出发去机场 <span class="tag warn">硬死线</span></div>
+          <div class="ev-d">13km、约 25 分钟。<b>建议提前一晚在叫车 App 预约 06:55 的车</b>，清晨不好打。</div>
+          <div class="note warn"><span class="ni">⏰</span><div>07:30 前务必上车。若遇早高峰或下雨，留出额外 15 分钟。</div></div>
+        </div>
+
+        <div class="ev"><div class="tm">07:25<small>UTC+8</small></div>
+          <div class="ev-t">抵达晋江机场</div>
+          <div class="ev-d">距离 10:15 起飞还有 2 小时 50 分，非常充裕。可以慢慢吃个机场早餐。</div>
+          <div class="ev-meta"><a class="nav-mini" href="https://www.google.com/maps/search/?api=1&query=%E6%B3%89%E5%B7%9E%E6%99%8B%E6%B1%9F%E5%9B%BD%E9%99%85%E6%9C%BA%E5%9C%BA" target="_blank" rel="noopener">📍 机场导航</a></div></div>
+
+        <div class="ev"><div class="tm">10:15<small>UTC+8</small></div>
+          <div class="ev-t">泉州晋江 → 广州白云 T2</div>
+          <div class="ev-d">11:55 落地广州。行程结束。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 待办清单 ===== -->
+  <div class="sec-title"><span class="bar"></span>待办清单</div>
+  <div class="sec-note">这里不做勾选框 —— 勾选状态只存在你各自浏览器里，两个人看到的会不一样。办完一项告诉我就好</div>
+  <div class="card">
+    <ol class="todo">
+      <li class="hi">
+        <span class="no">1</span>
+        <div><b>订机票</b>（去程 10/20 11:00 广州白云 T2 → 12:30 泉州晋江；返程 10/23 10:15 泉州晋江 → 11:55 广州白云 T2）
+          <span class="hint">航线班次多，早订更稳。出票后把航班号发我，页面上的航班信息要更新</span></div>
+      </li>
+      <li class="hi">
+        <span class="no">2</span>
+        <div><b>预订提线木偶戏门票</b>（D1 晚上 19:00 场）
+          <span class="hint">约 48–158 元/人，场次有限，热门的晚间场容易满，越早订越好</span></div>
+      </li>
+      <li>
+        <span class="no">3</span>
+        <div><b>预约泉州非物质文化遗产馆</b>（D3 上午）
+          <span class="hint">微信搜「泉州市艺术馆泉州市非遗保护中心」公众号，提前 1–3 天预约，免费</span></div>
+      </li>
+      <li>
+        <span class="no">4</span>
+        <div><b>出行前 3 天开始盯泉州天气与台风预警</b>
+          <span class="hint">10/20–22 恰在冷空气与降水时段，若预报台风，D2/D3 按页面里的「雨天备选」走</span></div>
+      </li>
+      <li>
+        <span class="no">5</span>
+        <div><b>出行前电话确认海交馆 / 泉州市博物馆是否恢复开放</b>
+          <span class="hint">海交馆东湖馆区 10 月起暂停开放，泉州市博物馆自 2025 年 6 月起闭馆改造，都是"待定"状态。海交馆 0595-22100939</span></div>
+      </li>
+      <li>
+        <span class="no">6</span>
+        <div><b>10/22 晚上收好行李</b>
+          <span class="hint">D4 早上 06:55 出发，来不及现收拾</span></div>
+      </li>
+      <li>
+        <span class="no">7</span>
+        <div><b>10/22 晚在叫车 App 预约 10/23 06:55 的车</b>
+          <span class="hint">清晨打车不好叫，提前预约最稳</span></div>
+      </li>
+      <li>
+        <span class="no">8</span>
+        <div><b>带好身份证原件</b>
+          <span class="hint">闽台缘博物馆散客可持身份证直接安检入馆，免预约</span></div>
+      </li>
+    </ol>
+  </div>
+
+  <!-- ===== 实用贴士 ===== -->
+  <div class="sec-title"><span class="bar"></span>实用贴士</div>
+  <div class="card">
+    <div class="book-row">
+      <div class="book-ico">🚕</div>
+      <div class="book-body">
+        <div class="book-t">交通：为什么选打车</div>
+        <div class="book-d">
+          古城（鲤城）窄巷多、<b>西街 7:00–22:00 机动车限行</b>，停车又贵又难；丰泽的博物馆群离古城 5–8km。
+          打车单程多在 <b>10–20 元</b>，两人分摊比公交省心得多，雨天更是唯一选择。
+        </div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="book-ico">🎟️</div>
+      <div class="book-body">
+        <div class="book-t">预约一览表</div>
+        <div class="book-d">
+          <b>必须预约：</b>非遗馆（公众号，提前 1–3 天）<br>
+          <b>需订票：</b>提线木偶戏（选场次购票）<br>
+          <b>免预约：</b>开元寺、承天寺、关岳庙、闽台缘（带身份证）、西街<br>
+          <span style="color:var(--ink3)">开元寺平时可直接入园，遇周末/节假日建议在「泉州开元寺寺务委员会」公众号实名预约</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="book-ico">🌦️</div>
+      <div class="book-body">
+        <div class="book-t">10 月泉州的天气</div>
+        <div class="book-d">
+          平均 <b>20–28℃</b>，长袖 + 薄外套。10 月下旬昼夜温差大，晚上加件披肩。<br>
+          <b>但要注意：</b>泉州常年 10 月可能有 1–2 个台风影响，且 <b>20–22 日正处冷空气与降水时段</b>。行程里每天的「雨天备选」都按这个做了预案。
+        </div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="book-ico">🍜</div>
+      <div class="book-body">
+        <div class="book-t">必吃清单</div>
+        <div class="book-d">
+          <b>面线糊</b>（水门国仔，加醋肉+卤蛋）· <b>姜母鸭</b>（斯丹，半只约 68 元）·
+          <b>土笋冻</b>（五叔公，12 元）· <b>烧肉粽</b>（侯阿婆）· <b>润饼</b>（亚佛）·
+          <b>四果汤</b>（上官，10 元）· <b>牛排配咸饭</b>（好成财，人均 25）<br>
+          <span style="color:var(--ink3)">老店多藏在西街侧边小巷，主街网红店普遍贵三成</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="book-ico">🎁</div>
+      <div class="book-body">
+        <div class="book-t">手信买什么</div>
+        <div class="book-d">
+          源和堂蜜饯 · 林记正泉茂绿豆饼 · 永春老醋 · 德化白瓷小摆件 · 安溪铁观音<br>
+          <span style="color:var(--ink3)">集中在中山路、西街特产店，一趟买完</span>
+        </div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="book-ico">🙏</div>
+      <div class="book-body">
+        <div class="book-t">进寺庙的规矩</div>
+        <div class="book-d">
+          着装得体，<b>不穿短裤、短裙、拖鞋</b>。殿内佛像禁闪光灯、禁触摸。<br>
+          开元寺天王殿旁有<b>免费清香</b>，不用在寺外买高价香；门口搭讪的"VIP 通道""低价讲解"都是骗局。
+        </div>
+      </div>
+    </div>
+    <div class="book-row">
+      <div class="book-ico">📶</div>
+      <div class="book-body">
+        <div class="book-t">实用小事</div>
+        <div class="book-d">
+          泉州老城石板路多，<b>穿平底鞋</b>。寺庙、博物馆多需<b>身份证原件</b>。<br>
+          泉州站有地铁 1 号线，但<b>老城鲤城区没有地铁</b>，打车 + 古城区「小白车」（招手即停，2–5 元/次）最方便。
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot-note">
+    泉州 · 半城烟火半城仙<br>
+    时间均为北京时间 UTC+8
+  </div>
+
+  </main>
+</div>
+
+<button class="theme-btn" id="themeBtn" aria-label="切换白天黑夜配色" title="切换配色">🌙</button>
+
+<script>
+/* ================= 时区无关的倒计时 ================= */
+/* 所有时刻硬编码为带偏移的 ISO 8601 (UTC+8)，倒计时基于绝对时间戳，
+   因此在任何时区打开，显示的剩余时间都一致 */
+var TZ = "+08:00";
+
+var ITINERARY = [
+  {t:"2026-10-20T11:00:00"+TZ, ev:"广州白云 T2 起飞", meta:"去程航班 · 飞往泉州晋江", day:1},
+  {t:"2026-10-20T12:30:00"+TZ, ev:"落地泉州晋江机场", meta:"出机场打车 · 约 25 分钟到酒店", day:1},
+  {t:"2026-10-20T14:40:00"+TZ, ev:"开元寺 · 务必 17:00 前入园", meta:"鲤城区西街 176 号 · 免费", day:1},
+  {t:"2026-10-20T19:00:00"+TZ, ev:"提线木偶戏开演", meta:"西街 20 号 · 需提前订票", day:1},
+  {t:"2026-10-21T09:20:00"+TZ, ev:"承天寺 · 泉州最清幽的古寺", meta:"南俊路 36 号 · 免费", day:2},
+  {t:"2026-10-21T10:40:00"+TZ, ev:"关岳庙 · 香火最旺的庙宇", meta:"涂门街 · 免费", day:2},
+  {t:"2026-10-21T13:40:00"+TZ, ev:"闽台缘博物馆 · 16:30 停止入馆", meta:"北清东路 212 号 · 带身份证免预约", day:2},
+  {t:"2026-10-22T10:00:00"+TZ, ev:"泉州非物质文化遗产馆", meta:"东湖街 648 号 · 需公众号预约", day:3},
+  {t:"2026-10-22T17:30:00"+TZ, ev:"西街天台看日落", meta:"西街游客中心天台 · 免费", day:3},
+  {t:"2026-10-23T06:55:00"+TZ, ev:"出发去机场 · 硬死线", meta:"13km 约 25 分钟 · 建议提前预约车", day:4},
+  {t:"2026-10-23T10:15:00"+TZ, ev:"泉州晋江起飞 · 返程", meta:"11:55 落地广州白云 T2", day:4}
+];
+
+var TRIP_START = new Date("2026-10-20T11:00:00"+TZ).getTime();
+var TRIP_END   = new Date("2026-10-23T12:00:00"+TZ).getTime();
+
+function fmt(n){ return n < 10 ? "0" + n : "" + n; }
+
+function tick(){
+  var now = Date.now();
+  var evEl = document.getElementById("nowEvent");
+  var metaEl = document.getElementById("nowMeta");
+  var footEl = document.getElementById("nowFoot");
+  var cd = document.getElementById("cd");
+  var dD = document.getElementById("cdD"), dH = document.getElementById("cdH"),
+      dM = document.getElementById("cdM"), dS = document.getElementById("cdS");
+
+  /* 找到下一个未发生的行程点 */
+  var next = null, idx = -1;
+  for (var i = 0; i < ITINERARY.length; i++){
+    if (new Date(ITINERARY[i].t).getTime() > now){ next = ITINERARY[i]; idx = i; break; }
+  }
+
+  if (next){
+    var diff = new Date(next.t).getTime() - now;
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor(diff % 86400000 / 3600000);
+    var m = Math.floor(diff % 3600000 / 60000);
+    var s = Math.floor(diff % 60000 / 1000);
+
+    evEl.textContent = (now < TRIP_START ? "距出发 · " : "") + next.ev;
+    var dt = new Date(next.t);
+    metaEl.textContent = "10/" + (dt.getMonth()+1 === 10 ? dt.getDate() : dt.getDate()) +
+      " " + fmt(dt.getHours()) + ":" + fmt(dt.getMinutes()) + " (UTC+8) · " + next.meta;
+
+    dD.textContent = d; dH.textContent = fmt(h); dM.textContent = fmt(m); dS.textContent = fmt(s);
+    cd.classList.remove("done");
+
+    if (now < TRIP_START){
+      footEl.innerHTML = '行程尚未开始 · 所有时刻按北京时间 UTC+8 计算，跨时区打开也不会算错<span class="tz-chip">UTC+8</span>';
+    } else {
+      footEl.innerHTML = '第 ' + next.day + ' 天 / 共 4 天 · 已过 ' + idx + ' 项 · 时间基准 UTC+8<span class="tz-chip">北京时间</span>';
+    }
+  } else {
+    evEl.textContent = now < TRIP_END + 86400000 ? "旅程已结束 · 一路顺风" : "泉州四日 · 已完成";
+    metaEl.textContent = "2026.10.20 – 10.23 · 谢谢观看";
+    dD.textContent = "0"; dH.textContent = "00"; dM.textContent = "00"; dS.textContent = "00";
+    cd.classList.add("done");
+    footEl.innerHTML = '所有时刻按北京时间 UTC+8 计算<span class="tz-chip">UTC+8</span>';
+  }
+}
+tick();
+setInterval(tick, 1000);
+
+/* ================= 逐日展开 ================= */
+document.querySelectorAll(".day-hd").forEach(function(hd){
+  hd.addEventListener("click", function(){
+    hd.parentElement.classList.toggle("open");
+  });
+});
+
+/* ================= 昼夜自动切换 + 手动覆盖 ================= */
+function hourInTZ(){
+  /* 取北京时间的小时（UTC+8），跨时区也按泉州本地时间判断昼夜 */
+  var now = new Date();
+  var utc8 = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + 8 * 3600000);
+  return utc8.getHours();
+}
+function applyTheme(mode){
+  document.documentElement.setAttribute("data-theme", mode);
+  var btn = document.getElementById("themeBtn");
+  btn.textContent = mode === "dark" ? "☀️" : "🌙";
+  var m = document.querySelector('meta[name="theme-color"]');
+  if (m) m.setAttribute("content", mode === "dark" ? "#171410" : "#c2571f");
+}
+function autoTheme(){
+  if (localStorage.getItem("qz-theme")) return;
+  var h = hourInTZ();
+  applyTheme((h >= 19 || h < 6) ? "dark" : "light");
+}
+autoTheme();
+
+document.getElementById("themeBtn").addEventListener("click", function(){
+  var cur = document.documentElement.getAttribute("data-theme");
+  var nxt = cur === "dark" ? "light" : "dark";
+  localStorage.setItem("qz-theme", nxt);
+  applyTheme(nxt);
+});
+
+/* ================= 落叶 ================= */
+(function(){
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var box = document.getElementById("leaves");
+  var colors = ["#c2571f","#d9a441","#e08b2e","#b8862b","#8a6a52"];
+  var N = 9;
+  for (var i = 0; i < N; i++){
+    var el = document.createElement("div");
+    el.className = "leaf";
+    var size = 8 + Math.random() * 10;
+    var c = colors[Math.floor(Math.random() * colors.length)];
+    el.style.width = size + "px";
+    el.style.height = size * 0.72 + "px";
+    el.style.left = (Math.random() * 100) + "%";
+    el.style.background = c;
+    el.style.borderRadius = "0 100% 0 100%";
+    el.style.opacity = (0.28 + Math.random() * 0.3).toFixed(2);
+    el.style.animation = "fall " + (13 + Math.random() * 11) + "s linear " +
+                          (Math.random() * -22) + "s infinite";
+    box.appendChild(el);
+  }
+  var st = document.createElement("style");
+  st.textContent = "@keyframes fall{" +
+    "0%{transform:translateY(0) rotate(0deg) translateX(0)}" +
+    "50%{transform:translateY(50vh) rotate(180deg) translateX(34px)}" +
+    "100%{transform:translateY(104vh) rotate(360deg) translateX(-24px)}}";
+  document.head.appendChild(st);
+})();
+</script>
+</body>
+</html>
